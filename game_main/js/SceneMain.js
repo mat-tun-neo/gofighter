@@ -105,6 +105,12 @@ phina.define("SceneMain", {
     let animation = ANIMATION_PATTERN[rand(0, Object.keys(ANIMATION_PATTERN).length - 1)];
     //console.log("animation", animation);
     CHARACTER[key].current_anim = animation;
+
+    this.characterGroup.children.forEach(char=> {
+      if (key == char.key) {
+        char.removeSprite();
+      }
+    });
     let char = SpriteCharacter(key, animation).addChildTo(this.characterGroup);
     char.fadein();
     
